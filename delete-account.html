@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Timeout — حذف الحساب</title>
+<link rel="icon" href="icon.png"><link rel="stylesheet" href="style.css"></head>
+<body><main>
+<header><img src="icon.png" alt=""><div><h1>حذف حسابك في Timeout</h1><div class="muted">المطوّر: khalidof</div></div></header>
+<div class="lang"><a href="#en">English</a></div>
+
+<p>يمكنك حذف حسابك وكل بياناته في أي وقت. يُحذف: حسابك وإيميلك، نسختك السحابية (المستوى، الرمل، المشتريات الشكلية، الأصدقاء، الإحصائيات)، ونقاطك في الترتيب العالمي. لا يمكن التراجع عن الحذف.</p>
+
+<h2>1. من داخل اللعبة (الأسرع)</h2>
+<p>الإعدادات ← الحساب ← «حذف حسابي وبياناتي». إذا كنت تلعب كضيف بلا إيميل: «حذف بياناتي».</p>
+
+<h2>2. من هنا بإيميلك وكلمة السر</h2>
+<div class="card">
+<form id="f">
+<input type="email" id="email" placeholder="الإيميل / Email" dir="ltr" required autocomplete="email">
+<input type="password" id="pass" placeholder="كلمة السر / Password" dir="ltr" required autocomplete="current-password">
+<button type="submit" id="go">احذف حسابي نهائيًا / Delete my account</button>
+<div id="msg" role="status"></div>
+</form>
+</div>
+
+<h2>3. بالمراسلة</h2>
+<p>إذا لم تستطع الدخول، راسلنا على <b>timeoutt94@gmail.com</b> مع اسمك في اللعبة ورمز اللاعب، وسنحذف بياناتك خلال 30 يومًا.</p>
+
+<section lang="en" id="en">
+<h1>Delete your Timeout account</h1>
+<p>You can delete your account and all its data at any time. Deleted: your account and email, your cloud backup (level, sand, cosmetics, friends, stats) and your global ranking points. Deletion can’t be undone.</p>
+<h2>1. In the game (fastest)</h2>
+<p>Settings → Account → “Delete my account and data”. Playing as a guest without email: “Delete my data”.</p>
+<h2>2. Here, with your email and password</h2>
+<p>Use the form above.</p>
+<h2>3. By email</h2>
+<p>If you can’t sign in, email <b>timeoutt94@gmail.com</b> with your nickname and player code, and we’ll delete your data within 30 days.</p>
+</section>
+</main>
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getAuth, signInWithEmailAndPassword, deleteUser } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { getDatabase, ref, get, remove } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js';
+const app = initializeApp({
+  apiKey: 'AIzaSyA3dmxLb5owt9YrgNOhZvhjJNR0s6NuYVg', authDomain: 'timeoutt.firebaseapp.com',
+  databaseURL: 'https://timeoutt-default-rtdb.europe-west1.firebasedatabase.app', projectId: 'timeoutt'
+});
+const auth = getAuth(app), db = getDatabase(app);
+const season = d => `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
+const msg = t => { document.getElementById('msg').textContent = t; };
+document.getElementById('f').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = document.getElementById('go'); btn.disabled = true;
+  msg('جارٍ الحذف… / Deleting…');
+  try {
+    const cred = await signInWithEmailAndPassword(auth, document.getElementById('email').value.trim(), document.getElementById('pass').value);
+    const uid = cred.user.uid;
+    const pid = (await get(ref(db, `users/${uid}/id`))).val();
+    const now = new Date(), prev = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, 15));
+    const own = async p => { try { const v = (await get(ref(db, p))).val(); if (v && v.uid === uid) await remove(ref(db, p)); } catch {} };
+    if (pid) { for (const s of [season(now), season(prev)]) await own(`ranked/${s}/${pid}`); await own(`presence/${pid}`); }
+    await remove(ref(db, `users/${uid}`)).catch(() => {});
+    await deleteUser(cred.user);
+    msg('تم حذف حسابك وكل بياناته. / Your account and data were deleted.');
+  } catch (err) {
+    const c = err && err.code || '';
+    msg(/wrong-password|invalid-credential|user-not-found|invalid-login/.test(c) ? 'الإيميل أو كلمة السر غير صحيحة. / Wrong email or password.' : `تعذّر الحذف، حاول مرة أخرى أو راسلنا. / Couldn’t delete, try again or email us. (${c})`);
+    btn.disabled = false;
+  }
+});
+</script>
+</body></html>
