@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#1f2444">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Timeout">
+<title>Timeout</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--APP-->
+<div class="app" id="app">
+
+  <!-- ===== الرئيسية ===== -->
+  <section class="screen home" id="scrHome">
+    <header class="home-top">
+      <div class="brand-mini" dir="ltr">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12M6 21h12"/><path d="M7.5 3v2.2a4.5 4.5 0 0 0 2 3.7L12 11l2.5-2.1a4.5 4.5 0 0 0 2-3.7V3"/><path d="M7.5 21v-2.2a4.5 4.5 0 0 1 2-3.7L12 13l2.5 2.1a4.5 4.5 0 0 1 2 3.7V21"/></svg>
+        <span>TIMEOUT</span>
+      </div>
+      <button type="button" class="icon-btn on-dark" id="homeSettings" aria-label="الإعدادات">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+      </button>
+    </header>
+
+    <div class="profile-card">
+      <span class="av big-av" id="homeAv"></span>
+      <b class="profile-name" id="homeName"></b>
+      <div class="profile-code">
+        <span>رمزك</span>
+        <bdi dir="ltr" id="homeCode"></bdi>
+        <button type="button" class="copy-btn" id="homeCopy" aria-label="نسخ رمزك">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+        </button>
+      </div>
+      <button type="button" class="prog-strip" id="progStrip" aria-label="مستواك ورملك">
+        <span class="lv-badge" id="hLv">1</span>
+        <span class="prog-mid"><b id="hTitle">مبتدئ</b><span class="xpbar"><i id="hXp"></i></span></span>
+        <span class="sand-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12M6 21h12"/><path d="M7.5 3v2.2a4.5 4.5 0 0 0 2 3.7L12 11l2.5-2.1a4.5 4.5 0 0 0 2-3.7V3"/><path d="M7.5 21v-2.2a4.5 4.5 0 0 1 2-3.7L12 13l2.5 2.1a4.5 4.5 0 0 1 2 3.7V21"/></svg><b id="hSand">0</b></span>
+      </button>
+    </div>
+
+    <div class="mode-list">
+      <button type="button" class="mode-tile" id="btnBots">
+        <span class="mt-ico s-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9.5 16h5"/></svg></span>
+        <span class="mt-txt"><b>ضد البوتات</b><small>تدرّب وحدك، ويعمل بدون إنترنت</small></span>
+      </button>
+      <button type="button" class="mode-tile" id="btnRandom" data-online>
+        <span class="mt-ico s-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+        <span class="mt-txt"><b>خصوم عشوائيون</b><small>نبحث لك عن لاعبين، والبوتات تكمل الطاولة</small></span>
+      </button>
+      <button type="button" class="mode-tile" id="btnRoom" data-online>
+        <span class="mt-ico s-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></svg></span>
+        <span class="mt-txt"><b>غرفة الأصدقاء</b><small>أنشئ غرفة برمز أو ادخل غرفة صديق</small></span>
+      </button>
+      <button type="button" class="mode-tile" id="btnNearby">
+        <span class="mt-ico s-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M8.5 15.5a5 5 0 0 1 0-7M15.5 8.5a5 5 0 0 1 0 7M5.6 18.4a9 9 0 0 1 0-12.8M18.4 5.6a9 9 0 0 1 0 12.8"/></svg></span>
+        <span class="mt-txt"><b>اللعب القريب</b><small>بدون إنترنت، للأصدقاء في نفس المكان</small></span>
+      </button>
+    </div>
+
+    <div class="home-grid3">
+      <button type="button" class="hb" id="btnRank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg><span>الترتيب</span></button>
+      <button type="button" class="hb" id="btnMissions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="17" rx="2"/><path d="M9 3h6v3H9zM8.5 12l2 2 4-4M8.5 17.5h7"/></svg><span>المهام</span><span class="badge" id="misBadge" hidden></span></button>
+      <button type="button" class="hb" id="btnShop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>المتجر</span></button>
+    </div>
+    <div class="home-row">
+      <button type="button" class="soft-btn on-dark" id="btnFriends">الأصدقاء <span class="badge" id="friendsBadge" hidden></span></button>
+      <button type="button" class="soft-btn on-dark" id="btnRulesHome">القواعد</button>
+    </div>
+    <p class="net" id="netNote"></p>
+  </section>
+
+  <!-- ===== البحث ===== -->
+  <section class="screen mid-screen" id="scrSearch" hidden>
+    <div class="panel search-panel">
+      <svg class="spin-glass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12M6 21h12"/><path d="M7.5 3v2.2a4.5 4.5 0 0 0 2 3.7L12 11l2.5-2.1a4.5 4.5 0 0 0 2-3.7V3"/><path d="M7.5 21v-2.2a4.5 4.5 0 0 1 2-3.7L12 13l2.5 2.1a4.5 4.5 0 0 1 2 3.7V21"/></svg>
+      <h2 id="searchTitle">نبحث عن خصوم…</h2>
+      <p id="searchInfo" class="muted"></p>
+      <p class="note">إذا لم يكتمل العدد خلال دقيقة، تكمل البوتات المقاعد الفارغة.</p>
+      <button type="button" class="ghost-btn" id="searchCancel">إلغاء</button>
+    </div>
+  </section>
+
+  <!-- ===== الغرفة ===== -->
+  <section class="screen" id="scrRoom" hidden>
+    <header class="sub-top">
+      <button type="button" class="icon-btn on-dark" id="roomBack" aria-label="رجوع">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <h2 id="roomTitle">غرفة الأصدقاء</h2>
+    </header>
+    <div class="panel room-panel">
+      <p class="eyebrow" id="roomEyebrow">رمز الغرفة</p>
+      <div class="room-code" id="roomCode" dir="ltr">·····</div>
+      <div class="btn-row" id="roomBtns">
+        <button type="button" class="soft-btn" id="copyCode">نسخ الرمز</button>
+        <button type="button" class="soft-btn" id="copyLink">نسخ رابط الدعوة</button>
+      </div>
+      <div class="size-row">
+        <span class="note" id="roomSizeNote">اختر حجم الطاولة</span>
+        <div class="size-step" id="roomSize" role="group" aria-label="حجم الطاولة">
+          <button type="button" data-step="1" aria-label="لاعب إضافي">+</button><b id="roomSizeN">4</b><button type="button" data-step="-1" aria-label="لاعب أقل">−</button>
+        </div>
+      </div>
+      <ul class="seat-list" id="seatList"></ul>
+      <div class="room-invite" id="roomInvite" hidden>
+        <h3>ادعُ أصدقاءك</h3>
+        <ul class="friend-list" id="roomFriends"></ul>
+      </div>
+      <button type="button" class="cta" id="roomStart" hidden>ابدأ الجولة</button>
+      <p class="note" id="roomNote"></p>
+    </div>
+  </section>
+
+  <!-- ===== اللعبة ===== -->
+  <section class="screen game" id="scrGame" hidden>
+    <header class="game-top">
+      <button type="button" class="icon-btn on-dark" id="gLeave" aria-label="مغادرة الجولة">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <span class="game-kind" id="gKind"></span>
+      <div class="game-actions">
+        <button type="button" class="icon-btn on-dark" id="gSound" aria-label="الصوت"></button>
+        <button type="button" class="icon-btn on-dark" id="gPause" aria-label="إيقاف مؤقت">
+          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        </button>
+        <button type="button" class="icon-btn on-dark" id="gRules" aria-label="القواعد">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.2a2.5 2.5 0 0 1 4.8 1c0 1.7-2.4 2.2-2.4 3.6M12 17h.01"/></svg>
+        </button>
+        <button type="button" class="icon-btn on-dark" id="gSettings" aria-label="الإعدادات">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        </button>
+      </div>
+    </header>
+    <div class="conn" id="gConn" hidden>انقطع الاتصال… نحاول إعادة الاتصال</div>
+
+    <div class="table" id="table" dir="ltr">
+      <div class="seat seat-top" data-pos="top"></div>
+      <div class="seat seat-left" data-pos="left"></div>
+      <div class="center" dir="rtl">
+        <svg class="dir-ring" id="dirRing" viewBox="0 0 200 200" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div class="clock" id="clock">
+          <span class="clock-who" id="clockWho"></span>
+          <div class="clock-ring" id="clockRing">
+            <div class="clock-in"><b class="clock-t" id="clockT">80.0</b><span class="clock-u">ثانية</span></div>
+          </div>
+        </div>
+        <div class="piles" dir="ltr">
+          <div class="pile">
+            <button type="button" class="deck back" id="deck" aria-label="اسحب ورقة مقابل ثانيتين">
+              <span class="lbl">اسحب</span>
+            </button>
+            <span class="pile-l" id="deckInfo" dir="rtl"></span>
+          </div>
+          <div class="pile">
+            <div class="slot" id="discard"></div>
+            <span class="pile-l" dir="rtl">الوسط</span>
+          </div>
+        </div>
+        <div class="countdown" id="countdown" hidden><b id="cdNum">3</b><span id="cdWho"></span></div>
+        <div class="your-turn" id="yourTurn" hidden>دورك!</div>
+        <p class="status" id="status" aria-live="polite"></p>
+      </div>
+      <div class="seat seat-right" data-pos="right"></div>
+
+      <div class="mine" id="mine" dir="rtl">
+        <div class="mine-bar">
+          <div class="ring" id="ring0"><div class="av" id="mineAv"></div></div>
+          <div class="info">
+            <span class="nm"><span id="mineName"></span><span class="chip" id="meChip" hidden>أنت التالي</span></span>
+            <span class="tm"><b class="t" id="t0">80.0</b><small>ثانية</small></span>
+            <span class="sub" id="meSub"></span>
+          </div>
+          <div class="tools">
+            <button type="button" class="tool" id="lensBtn" hidden>العدسة <bdi dir="ltr">−2</bdi>ث</button>
+            <button type="button" class="tool primary" id="passBtn" hidden>تمرير</button>
+          </div>
+        </div>
+        <div class="hand" id="hand" aria-label="أوراقك"></div>
+      </div>
+    </div>
+    <p class="ticker" id="ticker"></p>
+  </section>
+
+  <div class="fx" id="fx" aria-hidden="true"></div>
+</div>
+
+<!-- ===== النوافذ ===== -->
+<div class="overlay" id="ovRoomChoice" hidden data-dismiss>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="rcTitle">
+    <h2 id="rcTitle">غرفة الأصدقاء</h2>
+    <button type="button" class="cta" id="rcCreate">أنشئ غرفة جديدة</button>
+    <div class="or"><span>أو ادخل برمز</span></div>
+    <form class="join-form" id="joinForm">
+      <input id="joinCode" class="code-input" maxlength="5" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABCDE" dir="ltr" aria-label="رمز الغرفة">
+      <button type="submit" class="soft-btn">ادخل</button>
+    </form>
+    <button type="button" class="ghost-btn" data-close="ovRoomChoice">إلغاء</button>
+  </div>
+</div>
+
+<div class="overlay" id="ovNearby" hidden data-dismiss>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="nbTitle">
+    <div class="sheet-head"><h2 id="nbTitle">اللعب القريب</h2><button type="button" class="pill" data-close="ovNearby">إغلاق</button></div>
+    <p class="note">بدون إنترنت. فعّلوا Bluetooth وWiFi في كل الهواتف، وابقوا قريبين من بعض.</p>
+    <button type="button" class="cta" id="nbCreate">أنشئ طاولة قريبة</button>
+    <div class="or"><span>أو انضم إلى طاولة قريبة</span></div>
+    <ul class="nb-list" id="nbList"></ul>
+  </div>
+</div>
+
+<div class="overlay" id="ovSize" hidden data-dismiss>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="szTitle">
+    <h2 id="szTitle">ضد البوتات</h2>
+    <p class="note" id="szNote"></p>
+    <div class="size-list" id="szList">
+      <button type="button" class="size-tile" data-size="2"><b>2</b><small>لاعبان</small></button>
+      <button type="button" class="size-tile" data-size="3"><b>3</b><small>لاعبين</small></button>
+      <button type="button" class="size-tile" data-size="4"><b>4</b><small>لاعبين</small></button>
+      <button type="button" class="size-tile" data-size="5"><b>5</b><small>لاعبين</small></button>
+      <button type="button" class="size-tile" data-size="6"><b>6</b><small>لاعبين</small></button>
+      <button type="button" class="size-tile" data-size="7"><b>7</b><small>لاعبين</small></button>
+      <button type="button" class="size-tile" data-size="8"><b>8</b><small>لاعبين</small></button>
+      <button type="button" class="size-tile" data-size="9"><b>9</b><small>لاعبين</small></button>
+      <button type="button" class="size-tile" data-size="10"><b>10</b><small>لاعبين</small></button>
+    </div>
+    <button type="button" class="ghost-btn" data-close="ovSize">إلغاء</button>
+  </div>
+</div>
+
+<div class="overlay" id="ovRank" hidden data-dismiss>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="rkTitle">
+    <div class="sheet-head"><h2 id="rkTitle">الترتيب العالمي</h2><button type="button" class="pill" data-close="ovRank">إغلاق</button></div>
+    <p class="note" id="rkSeason"></p>
+    <div class="rk-me" id="rkMe"></div>
+    <ol class="rk-list" id="rkList"></ol>
+    <p class="note">نقاط الترتيب تأتي من جولات «خصوم عشوائيون» فقط. في نهاية كل شهر يُصفَّر الترتيب ويأخذ الأوائل رملًا وإطارًا خاصًا.</p>
+    <h3 class="sub-h">إحصائياتك</h3>
+    <dl class="stats" id="stats"></dl>
+  </div>
+</div>
+
+<div class="overlay" id="ovMissions" hidden data-dismiss>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="msTitle">
+    <div class="sheet-head"><h2 id="msTitle">المهام والمكافآت</h2><button type="button" class="pill" data-close="ovMissions">إغلاق</button></div>
+    <h3 class="sub-h">المكافأة اليومية</h3>
+    <div class="daily-row" id="dailyRow"></div>
+    <button type="button" class="cta" id="dailyClaim">استلم مكافأة اليوم</button>
+    <h3 class="sub-h">مهام اليوم</h3>
+    <ul class="mis-list" id="misList"></ul>
+    <p class="note">المهام تتجدد كل يوم، ومكافأتها تُضاف لرملك فور إكمالها.</p>
+  </div>
+</div>
+
+<div class="overlay" id="ovShop" hidden data-dismiss>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle">
+    <div class="sheet-head"><h2 id="shTitle">المتجر</h2><span class="sand-pill dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12M6 21h12"/><path d="M7.5 3v2.2a4.5 4.5 0 0 0 2 3.7L12 11l2.5-2.1a4.5 4.5 0 0 0 2-3.7V3"/><path d="M7.5 21v-2.2a4.5 4.5 0 0 1 2-3.7L12 13l2.5 2.1a4.5 4.5 0 0 1 2 3.7V21"/></svg><b id="shSand">0</b></span><button type="button" class="pill" data-close="ovShop">إغلاق</button></div>
+    <div class="seg shop-tabs" role="tablist">
+      <label><input type="radio" name="shopTab" value="back" checked><span><b>ظهر الأوراق</b></span></label>
+      <label><input type="radio" name="shopTab" value="felt"><span><b>الطاولة</b></span></label>
+      <label><input type="radio" name="shopTab" value="frame"><span><b>الإطارات</b></span></label>
+    </div>
+    <div class="shop-grid" id="shopGrid"></div>
+    <p class="note">أشياء شكلية فقط، لا تعطي أي أفضلية في اللعب. اجمع الرمل من الجولات والمهام والمكافأة اليومية.</p>
+  </div>
+</div>
+
+<div class="overlay" id="ovFriends" hidden data-dismiss>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="frTitle">
+    <div class="sheet-head"><h2 id="frTitle">الأصدقاء</h2><button type="button" class="pill" data-close="ovFriends">إغلاق</button></div>
+    <div class="my-code">
+      <span>رمزك</span>
+      <b dir="ltr" id="frMyCode"></b>
+      <button type="button" class="soft-btn" id="frCopy">نسخ</button>
+    </div>
+    <form class="join-form" id="addFriendForm">
+      <input id="friendCode" class="code-input" maxlength="8" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="رمز صديقك" dir="ltr" aria-label="رمز صديقك">
+      <button type="submit" class="soft-btn">إضافة صديق</button>
+    </form>
+    <p class="note" id="frNote">أرسل رمزك لصديقك، أو أضف رمزه هنا فيصله طلب صداقة. ترى من هو متصل، وتدعوه إلى غرفتك.</p>
+    <ul class="friend-list" id="friendList"></ul>
+  </div>
+</div>
+
+<div class="overlay" id="ovSettings" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="stTitle">
+    <div class="sheet-head"><h2 id="stTitle">الإعدادات</h2><button type="button" class="pill" data-close="ovSettings">إغلاق</button></div>
+    <section class="set-group">
+      <h3>اللغة</h3>
+      <div class="seg" role="radiogroup" aria-label="اللغة">
+        <label><input type="radio" name="setLang" value="ar"><span><b lang="ar" dir="rtl">العربية</b></span></label>
+        <label><input type="radio" name="setLang" value="en"><span><b lang="en" dir="ltr">English</b></span></label>
+      </div>
+    </section>
+    <section class="set-group" id="setAccount">
+      <h3>الحساب</h3>
+      <p class="note" id="accNote">أنت تلعب كضيف.</p>
+      <div class="acc-btns" id="accBtns"></div>
+    </section>
+    <section class="set-group">
+      <h3>ملفك</h3>
+      <div class="photo-row">
+        <span class="av big-av" id="setPhotoPrev"></span>
+        <div class="photo-btns">
+          <label class="soft-btn file-btn">اختيار صورة<input type="file" id="setPhoto" accept="image/*"></label>
+          <button type="button" class="ghost-btn small" id="setPhotoDel">إزالة الصورة</button>
+        </div>
+      </div>
+      <label class="field"><span>الاسم</span><input id="setName" maxlength="16" autocomplete="nickname"></label>
+      <div class="field"><span>لون الخلفية (عندما لا توجد صورة)</span><div class="swatches" id="setAv" role="radiogroup" aria-label="لون الصورة"></div></div>
+      <button type="button" class="cta" id="setSave" disabled>حفظ</button>
+    </section>
+    <section class="set-group">
+      <h3>الأصوات</h3>
+      <label class="switch"><span>أصوات اللعبة</span><input type="checkbox" id="setSound"><i></i></label>
+      <label class="field"><span>مستوى الصوت</span><input type="range" id="setVol" min="0" max="1" step="0.05"></label>
+      <label class="switch"><span>صوت المعلّق «Time out!» عند نفاد الوقت</span><input type="checkbox" id="setVoice"><i></i></label>
+      <label class="switch"><span>تكتكة الساعة في آخر 10 ثوانٍ</span><input type="checkbox" id="setTicks"><i></i></label>
+      <label class="switch"><span>تنبيه عندما يقترب دورك</span><input type="checkbox" id="setAlerts"><i></i></label>
+      <label class="switch"><span>الاهتزاز</span><input type="checkbox" id="setVibe"><i></i></label>
+      <button type="button" class="soft-btn" id="setTest">جرّب الصوت</button>
+    </section>
+    <section class="set-group">
+      <h3>الأداء والبطارية</h3>
+      <label class="switch"><span>وضع توفير الطاقة<small class="sw-note">حركات وظلال أقل، أخف على الهواتف الضعيفة والبطارية</small></span><input type="checkbox" id="setLite"><i></i></label>
+    </section>
+    <section class="set-group">
+      <h3>المساعدة في اللعب</h3>
+      <div class="seg" role="radiogroup" aria-label="المساعدة">
+        <label><input type="radio" name="setMode" value="train"><span><b>تدريب</b><small>أوراقك المطابقة ترتفع</small></span></label>
+        <label><input type="radio" name="setMode" value="normal"><span><b>عادي</b><small>بلا مساعدة، والعدسة بثانيتين</small></span></label>
+      </div>
+    </section>
+    <section class="set-group" id="setAdsGroup" hidden>
+      <h3>الإعلانات</h3>
+      <p class="note">تعرض اللعبة إعلانًا بين الجولات فقط، ولا تعرض إعلانات أثناء اللعب.</p>
+      <button type="button" class="ghost-btn small" id="adsPrivacy">خيارات الخصوصية للإعلانات</button>
+    </section>
+    <section class="set-group">
+      <h3>البيانات</h3>
+      <p class="note">ملفك وأصدقاؤك وإحصائياتك محفوظة في هذا الجهاز فقط.</p>
+      <button type="button" class="ghost-btn danger" id="setReset">مسح الإحصائيات</button>
+    </section>
+  </div>
+</div>
+
+<div class="overlay" id="ovAccount" hidden data-dismiss>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="acTitle">
+    <div class="sheet-head"><h2 id="acTitle">إنشاء حساب</h2><button type="button" class="pill" data-close="ovAccount">إغلاق</button></div>
+    <p class="note" id="acNote"></p>
+    <form class="ac-form" id="acForm" novalidate>
+      <label class="fld"><span>الإيميل</span><input type="email" id="acEmail" autocomplete="email" inputmode="email" dir="ltr" spellcheck="false" autocapitalize="off"></label>
+      <label class="fld"><span>كلمة السر</span><input type="password" id="acPass" autocomplete="new-password" dir="ltr" minlength="6"></label>
+      <p class="ac-err" id="acErr" role="alert" hidden></p>
+      <button type="submit" class="cta" id="acSubmit">إنشاء الحساب</button>
+    </form>
+    <div class="ac-links">
+      <button type="button" class="ghost-btn small" id="acForgot" hidden>نسيت كلمة السر؟</button>
+      <button type="button" class="ghost-btn small" id="acSwitch">لدي حساب: تسجيل الدخول</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ovResult" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" id="resultSheet"></div>
+</div>
+
+<div class="overlay" id="ovConfirm" hidden data-dismiss>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="cfTitle">
+    <h2 id="cfTitle">مغادرة الجولة؟</h2>
+    <p id="cfText">ستُحتسب الجولة خسارة.</p>
+    <div class="btns">
+      <button type="button" class="cta danger-cta" id="cfYes">مغادرة</button>
+      <button type="button" class="ghost-btn" data-close="ovConfirm">متابعة اللعب</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ovPause" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="psTitle">
+    <h2 id="psTitle">اللعبة متوقفة</h2>
+    <p>الساعات متجمدة حتى تعود.</p>
+    <button type="button" class="cta" id="psResume">متابعة</button>
+  </div>
+</div>
+
+<div class="overlay rules-ov" id="ovRules" hidden data-dismiss>
+  <div class="sheet rules-sheet" role="dialog" aria-modal="true" aria-labelledby="ruTitle">
+    <div class="sheet-head"><h2 id="ruTitle">القواعد</h2><button type="button" class="pill" data-close="ovRules">إغلاق</button></div>
+    <div class="rules-body">
+      <section><h3>الهدف</h3><p>أن تكون آخر لاعب بقي عنده وقت. الأوراق سلاحك، والثواني حياتك.</p></section>
+      <section><h3>الجلوس والدور</h3><p>الطاولة من 2 إلى 10 لاعبين (وحتى 8 في اللعب القريب). أنت دائمًا في الأسفل، والدور يدور نحو اليمين كما تشير الأسهم حول الساعة. أوراق الخصوم مقلوبة، فلا ترى إلا عددها. عندما يصل الدور إليك تسمع نغمة خاصة وتظهر كلمة «دورك!» تحت أوراق الوسط.</p></section>
+      <section><h3>الرزمة: 94 ورقة</h3>
+        <ul>
+          <li>أوراق الأرقام: 4 ألوان، والأرقام من 1 إلى 9، نسختان من كل رقم في كل لون (72 ورقة).</li>
+          <li>من كل لون: قلب الساعة ×2، وتسريب ×1، وقنص ×1.</li>
+          <li><b>تبديل ×2 وتجميد ×2</b> في الرزمة كلها، فهي نادرة.</li>
+          <li><b>حصن ×2</b>، لا يُوزَّع في البداية ويُوجد بالسحب فقط.</li>
+        </ul>
+        <p>إذا فرغت الرزمة تُخلط الأوراق الملعوبة، ما عدا ورقة الوسط، وتصبح رزمة جديدة.</p>
+      </section>
+      <section><h3>البداية</h3><p>كل لاعب يأخذ 5 أوراق و80 ثانية. تُقلب ورقة رقم في الوسط، والقرعة تحدد من يبدأ. يظهر عدّ تنازلي 3، 2، 1 مع اسم من سيبدأ، والساعات لا تتحرك أثناءه.</p></section>
+      <section><h3>الساعة</h3>
+        <ul>
+          <li>ساعتك تنقص في دورك فقط، والساعة الكبيرة في الوسط تعرض دائمًا وقت من عليه الدور.</li>
+          <li>أول ثانية ونصف من كل دور مجانية، وتظهر الساعة بالأخضر خلالها.</li>
+          <li>لا حد أعلى للوقت. إذا وصل وقتك إلى صفر تخرج فورًا، حتى لو كان ذلك بضربة في دور غيرك.</li>
+        </ul>
+      </section>
+      <section><h3>ماذا تفعل في دورك</h3>
+        <ol>
+          <li><b>تلعب ورقة واحدة مطابقة:</b> ورقة رقم بنفس اللون أو نفس الرقم، أو ورقة خاصة بنفس اللون أو نفس النوع.</li>
+          <li><b>أو تسحب ورقة واحدة</b> مقابل ثانيتين. بعد السحب تلعب ورقة مطابقة أو تضغط «تمرير». إذا لم تكن عندك أي ورقة مطابقة ينتقل الدور تلقائيًا.</li>
+        </ol>
+      </section>
+      <section><h3>تأثير الأوراق</h3>
+        <ul class="fx-list">
+          <li><span data-mini="n:b:7"></span><div><b>ورقة الرقم</b>: تخصم رقمها ثوانيَ من اللاعب التالي.</div></li>
+          <li><span data-mini="flip:g"></span><div><b>قلب الساعة</b>: تربح 12 ثانية.</div></li>
+          <li><span data-mini="leak:b"></span><div><b>تسريب</b>: كل الخصوم الباقين يخسرون 4 ثوانٍ.</div></li>
+          <li><span data-mini="swap:r"></span><div><b>تبديل</b>: تتبادل وقتك مع الخصم صاحب أكبر وقت غير المحصّن، وعند التعادل مع الأقرب في ترتيب الدور. <b>يُلعب فقط في أول 5 ثوانٍ من دورك</b> (يظهر شريط يتناقص على الورقة)، وبعدها تحتفظ به لدور قادم بنفس الشرط. <b>وإذا كنت أنت المتصدّر</b> لا يتغير وقتك، بل يتبادل أقوى خصم وقته مع أضعف خصم. المحصّنون لا يدخلون في التبديل، وإذا لم يبقَ من يُبدَّل تضيع الورقة.</div></li>
+          <li><span data-mini="freeze:b"></span><div><b>تجميد</b>: اللاعب الذي قبلك (الذي يضربك بأرقامه) يُتخطّى دوره القادم، فلا يستطيع خصم وقتك. يظهر عليه ندف ثلج حتى يُتخطّى.</div></li>
+          <li><span data-mini="snipe:r"></span><div><b>قنص</b>: اضغط الورقة ثم اضغط أي خصم تختاره، فيخسر 10 ثوانٍ. لإلغاء التصويب اضغط الورقة مرة أخرى.</div></li>
+          <li><span data-mini="shield:k"></span><div><b>حصن</b>: من يسحبه يتحصّن تلقائيًا ضد التبديل حتى نهاية الجولة، ويظهر درع على صورته يراه الجميع. لا يدخل يدك، وتأخذ بدله ورقة أخرى مجانًا.</div></li>
+        </ul>
+        <p>بعد ورقة خاصة، يطابق اللاعب التالي لونها أو يلعب نفس نوعها.</p>
+      </section>
+      <section><h3>مكافأة الإقصاء</h3>
+        <ul>
+          <li>إذا أقصيت لاعبًا بورقتك (رقم، تسريب، أو قنص) تربح <b>12 ثانية</b>.</li>
+          <li>إذا انتهى وقت لاعب وحده دون أن يضربه أحد، يربح <b>كل اللاعبين الباقين 12 ثانية</b>.</li>
+        </ul>
+      </section>
+      <section><h3>الرمل والمستويات والترتيب</h3>
+        <ul>
+          <li>بعد كل جولة تربح <b>حبّات رمل</b> و<b>خبرة</b>: أكثر كلما تقدّم مركزك وأقصيت لاعبين، وللفائز مكافأة حسب الثواني الباقية في ساعته. جولات البوتات تعطي أقل.</li>
+          <li>الخبرة ترفع <b>مستواك</b>، ومع المستويات تنال ألقابًا يراها الجميع على الطاولة.</li>
+          <li><b>الترتيب العالمي</b> من جولات «خصوم عشوائيون» فقط: الفائز +30 نقطة، والبقية حسب المركز (الأخير −5)، و+4 لكل إقصاء. يُصفَّر كل شهر، وأوائل الموسم يربحون رملًا وإطارًا خاصًا.</li>
+          <li>كل يوم: مكافأة تكبر مع الأيام المتتالية، و3 مهام جديدة.</li>
+          <li>بالرمل تشتري من المتجر ظهر أوراق وألوان طاولة وإطارات. كلها شكلية ولا تعطي أي أفضلية.</li>
+        </ul>
+      </section>
+      <section><h3>اليد الفارغة</h3><p>إذا لعبت آخر ورقة في يدك تربح 20 ثانية وتأخذ 5 أوراق جديدة.</p></section>
+      <section><h3>الخروج والترتيب</h3>
+        <ul>
+          <li>من نفد وقته يخرج مع صفارة وصوت يعلن «Time out!»، وتذهب أوراقه تحت كومة الوسط، ويتخطاه الدور.</li>
+          <li>إذا خرج لاعبان معًا بتسريب، يكون الأسوأ ترتيبًا من كان وقته أقل قبل الضربة.</li>
+          <li>آخر من بقي هو الأول. ومن يخرج يختار بين مشاهدة بقية الجولة أو الخروج.</li>
+        </ul>
+      </section>
+      <section><h3>اللعب القريب</h3>
+        <p>للعب بدون إنترنت مع أصدقاء في نفس المكان: أحدكم يضغط «أنشئ طاولة قريبة»، والباقون يجدون طاولته في «اللعب القريب» ويضغطون «انضم». يعمل عبر Bluetooth وWiFi مباشرة بين الهواتف، وصاحب الطاولة يجب أن يبقي التطبيق مفتوحًا حتى نهاية الجولة.</p>
+      </section>
+      <section><h3>المساعدة</h3>
+        <ul>
+          <li><b>تدريب:</b> أوراقك المطابقة ترتفع، والرزمة تهتز إذا لم تملك أي ورقة مطابقة.</li>
+          <li><b>عادي:</b> بلا إضاءة. زر «العدسة» يكشف أوراقك المطابقة مقابل ثانيتين، مرة في كل دور.</li>
+        </ul>
+        <p>تغيّرها من الإعدادات.</p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<template id="rulesEn">
+      <section><h3>Goal</h3><p>Be the last player with time left. Cards are your weapons; seconds are your life.</p></section>
+      <section><h3>Seats and turns</h3><p>A table has 2 to 10 players (up to 8 in nearby play). You always sit at the bottom, and turns go around as the arrows around the clock show. Opponents’ cards are face down, so you only see how many they hold. When your turn comes you hear a special chime and “Your turn!” appears under the center pile.</p></section>
+      <section><h3>The deck: 94 cards</h3>
+        <ul>
+          <li>Number cards: 4 colors, 1 to 9, two of each number in each color (72 cards).</li>
+          <li>In each color: Flip ×2, Leak ×1 and Snipe ×1.</li>
+          <li><b>Swap ×2 and Freeze ×2</b> in the whole deck, so they’re rare.</li>
+          <li><b>Shield ×2</b>, never dealt at the start, only found by drawing.</li>
+        </ul>
+        <p>When the deck runs out, the played cards (except the top one) are shuffled into a new deck.</p>
+      </section>
+      <section><h3>Start</h3><p>Everyone gets 5 cards and 80 seconds. A number card is turned face up in the center, and a random draw picks who starts. A 3, 2, 1 countdown shows who starts; clocks don’t run during it.</p></section>
+      <section><h3>The clock</h3>
+        <ul>
+          <li>Your clock only runs on your turn. The big clock in the middle always shows the time of whoever is playing.</li>
+          <li>The first second and a half of each turn is free; the clock shows green during it.</li>
+          <li>There’s no upper limit. If your time reaches zero you’re out immediately, even if it happens on someone else’s turn.</li>
+        </ul>
+      </section>
+      <section><h3>On your turn</h3>
+        <ol>
+          <li><b>Play one matching card:</b> a number card of the same color or number, or a special card of the same color or type.</li>
+          <li><b>Or draw one card</b> for 2 seconds. After drawing, play a matching card or tap “Pass”. If nothing matches, the turn passes automatically.</li>
+        </ol>
+      </section>
+      <section><h3>Card effects</h3>
+        <ul class="fx-list">
+          <li><span data-mini="n:b:7"></span><div><b>Number</b>: takes its value in seconds from the next player.</div></li>
+          <li><span data-mini="flip:g"></span><div><b>Flip</b>: you gain 12 seconds.</div></li>
+          <li><span data-mini="leak:b"></span><div><b>Leak</b>: every remaining opponent loses 4 seconds.</div></li>
+          <li><span data-mini="swap:r"></span><div><b>Swap</b>: you swap clocks with the unshielded opponent who has the most time. <b>Only in the first 5 seconds of your turn</b> (a bar on the card counts down); after that, keep it for a later turn. <b>If you’re the leader</b>, your time stays and the strongest and weakest opponents swap instead.</div></li>
+          <li><span data-mini="freeze:b"></span><div><b>Freeze</b>: the player before you (the one whose numbers hit you) skips their next turn, so they can’t take your time.</div></li>
+          <li><span data-mini="snipe:r"></span><div><b>Snipe</b>: tap the card, then tap any opponent: they lose 10 seconds. Tap the card again to cancel.</div></li>
+          <li><span data-mini="shield:k"></span><div><b>Shield</b>: whoever draws it is protected from swaps until the end of the game, with a badge everyone can see. It doesn’t go into your hand; you get a free replacement card.</div></li>
+        </ul>
+        <p>After a special card, the next player matches its color or plays the same type.</p>
+      </section>
+      <section><h3>Knockout bonus</h3>
+        <ul>
+          <li>If your card (number, leak or snipe) knocks a player out, you gain <b>12 seconds</b>.</li>
+          <li>If a player runs out of time on their own, <b>everyone still in gains 12 seconds</b>.</li>
+        </ul>
+      </section>
+      <section><h3>Sand, levels and ranking</h3>
+        <ul>
+          <li>After each game you earn <b>sand</b> and <b>XP</b>: more for a better place and for knockouts, and the winner gets a bonus for the seconds left on their clock. Games against bots give less.</li>
+          <li>XP raises your <b>level</b>, and levels unlock titles everyone sees at the table.</li>
+          <li>The <b>global ranking</b> counts “Random players” games only: the winner gets +30 points, the others by place (last −5), plus 4 per knockout. It resets every month, and the season’s top players win sand and a special frame.</li>
+          <li>Every day: a reward that grows with your streak, and 3 new missions.</li>
+          <li>Spend sand in the shop on card backs, table colors and frames. All cosmetic, no gameplay advantage.</li>
+        </ul>
+      </section>
+      <section><h3>Empty hand</h3><p>Play your last card and you gain 20 seconds plus 5 new cards.</p></section>
+      <section><h3>Elimination and ranking</h3>
+        <ul>
+          <li>A player out of time leaves the game; their cards go under the pile and they’re skipped.</li>
+          <li>If a Leak knocks out two players at once, the one with less time before the hit ranks lower.</li>
+          <li>The last player standing wins. Eliminated players can keep watching or leave.</li>
+        </ul>
+      </section>
+      <section><h3>Nearby play</h3><p>Play without internet with friends in the same place: one of you taps “Create a nearby table”, the others find it under “Nearby play” and tap “Join”. It works over Bluetooth and WiFi directly between phones, and the host must keep the app open until the game ends.</p></section>
+      <section><h3>Assistance</h3>
+        <ul>
+          <li><b>Training:</b> your playable cards rise, and the deck wiggles when nothing matches.</li>
+          <li><b>Normal:</b> no hints. The “Lens” button shows your playable cards for 2 seconds, once per turn.</li>
+        </ul>
+        <p>Change it in Settings.</p>
+      </section>
+</template>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<!--/APP-->
+<script type="module" src="app.js"></script>
+</body>
+</html>

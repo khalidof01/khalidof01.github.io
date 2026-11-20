@@ -1,0 +1,1 @@
+export default{apiKey:"AIzaSyA3dmxLb5owt9YrgNOhZvhjJNR0s6NuYVg",authDomain:"timeoutt.firebaseapp.com",databaseURL:"https://timeoutt-default-rtdb.europe-west1.firebasedatabase.app",projectId:"timeoutt",storageBucket:"timeoutt.firebasestorage.app",messagingSenderId:"1025624276227",appId:"1:1025624276227:web:f249eafe06d537dff97d36"};
