@@ -59,6 +59,7 @@ document.getElementById('f').addEventListener('submit', async e => {
     const own = async p => { try { const v = (await get(ref(db, p))).val(); if (v && v.uid === uid) await remove(ref(db, p)); } catch {} };
     if (pid) { for (const s of [season(now), season(prev)]) await own(`ranked/${s}/${pid}`); await own(`presence/${pid}`); }
     await remove(ref(db, `users/${uid}`)).catch(() => {});
+    if (pid) await remove(ref(db, `pids/${pid}`)).catch(() => {});
     await deleteUser(cred.user);
     msg('تم حذف حسابك وكل بياناته. / Your account and data were deleted.');
   } catch (err) {
