@@ -142,51 +142,7 @@
     </header>
     <div class="conn" id="gConn" hidden>انقطع الاتصال… نحاول إعادة الاتصال</div>
 
-    <div class="table" id="table" dir="ltr">
-      <div class="seat seat-top" data-pos="top"></div>
-      <div class="seat seat-left" data-pos="left"></div>
-      <div class="center" dir="rtl">
-        <svg class="dir-ring" id="dirRing" viewBox="0 0 200 200" preserveAspectRatio="none" aria-hidden="true"></svg>
-        <div class="clock" id="clock">
-          <span class="clock-who" id="clockWho"></span>
-          <div class="clock-ring" id="clockRing">
-            <div class="clock-in"><b class="clock-t" id="clockT">80.0</b><span class="clock-u">ثانية</span></div>
-          </div>
-        </div>
-        <div class="piles" dir="ltr">
-          <div class="pile">
-            <button type="button" class="deck back" id="deck" aria-label="اسحب ورقة مقابل ثانيتين">
-              <span class="lbl">اسحب</span>
-            </button>
-            <span class="pile-l" id="deckInfo" dir="rtl"></span>
-          </div>
-          <div class="pile">
-            <div class="slot" id="discard"></div>
-            <span class="pile-l" dir="rtl">الوسط</span>
-          </div>
-        </div>
-        <div class="countdown" id="countdown" hidden><b id="cdNum">3</b><span id="cdWho"></span></div>
-        <div class="your-turn" id="yourTurn" hidden>دورك!</div>
-        <p class="status" id="status" aria-live="polite"></p>
-      </div>
-      <div class="seat seat-right" data-pos="right"></div>
-
-      <div class="mine" id="mine" dir="rtl">
-        <div class="mine-bar">
-          <div class="ring" id="ring0"><div class="av" id="mineAv"></div></div>
-          <div class="info">
-            <span class="nm"><span id="mineName"></span><span class="chip" id="meChip" hidden>أنت التالي</span></span>
-            <span class="tm"><b class="t" id="t0">80.0</b><small>ثانية</small></span>
-            <span class="sub" id="meSub"></span>
-          </div>
-          <div class="tools">
-            <button type="button" class="tool" id="lensBtn" hidden>العدسة <bdi dir="ltr">−2</bdi>ث</button>
-            <button type="button" class="tool primary" id="passBtn" hidden>تمرير</button>
-          </div>
-        </div>
-        <div class="hand" id="hand" aria-label="أوراقك"></div>
-      </div>
-    </div>
+    <div class="table tv" id="table" dir="ltr"></div>
     <p class="ticker" id="ticker"></p>
   </section>
 
