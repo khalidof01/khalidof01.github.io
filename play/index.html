@@ -177,6 +177,7 @@
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="szTitle">
     <h2 id="szTitle">ضد البوتات</h2>
     <p class="note" id="szNote"></p>
+    <div class="help-box" id="helpBoxSz"></div>
     <div class="size-list" id="szList">
       <button type="button" class="size-tile" data-size="2"><b>2</b><small>لاعبان</small></button>
       <button type="button" class="size-tile" data-size="3"><b>3</b><small>لاعبين</small></button>
@@ -290,10 +291,7 @@
     </section>
     <section class="set-group">
       <h3>المساعدة في اللعب</h3>
-      <div class="seg" role="radiogroup" aria-label="المساعدة">
-        <label><input type="radio" name="setMode" value="train"><span><b>تدريب</b><small>أوراقك المطابقة ترتفع</small></span></label>
-        <label><input type="radio" name="setMode" value="normal"><span><b>عادي</b><small>بلا مساعدة، والعدسة بثانيتين</small></span></label>
-      </div>
+      <div class="help-box" id="helpBoxSet"></div>
     </section>
     <section class="set-group" id="setAdsGroup" hidden>
       <h3>الإعلانات</h3>
@@ -417,10 +415,11 @@
       </section>
       <section><h3>المساعدة</h3>
         <ul>
-          <li><b>تدريب:</b> أوراقك المطابقة ترتفع، والرزمة تهتز إذا لم تملك أي ورقة مطابقة.</li>
-          <li><b>عادي:</b> بلا إضاءة. زر «العدسة» يكشف أوراقك المطابقة مقابل ثانيتين، مرة في كل دور.</li>
+          <li><b>المساعدة:</b> أوراقك المطابقة ترتفع وتتوهج، والرزمة تهتز إذا لم تملك أي ورقة مطابقة.</li>
+          <li>أول 5 مباريات بمساعدة دائمًا لتتعلم القواعد. بعدها تختارها بنفسك مجانًا حتى المستوى 8.</li>
+          <li>بعد المستوى 8: شاهد إعلانًا لتحصل على مساعدة لمباراة كاملة ضد البوتات أو في غرفة خاصة (تجمع حتى 10).</li>
+          <li><b>بلا مساعدة:</b> زر «العدسة» يكشف أوراقك المطابقة مقابل ثانيتين، مرة في كل دور. في اللعب العشوائي العدسة وحدها.</li>
         </ul>
-        <p>تغيّرها من الإعدادات.</p>
       </section>
     </div>
   </div>
@@ -490,10 +489,11 @@
       <section><h3>Nearby play</h3><p>Play without internet with friends in the same place: one of you taps “Create a nearby table”, the others find it under “Nearby play” and tap “Join”. It works over Bluetooth and WiFi directly between phones, and the host must keep the app open until the game ends.</p></section>
       <section><h3>Assistance</h3>
         <ul>
-          <li><b>Training:</b> your playable cards rise, and the deck wiggles when nothing matches.</li>
-          <li><b>Normal:</b> no hints. The “Lens” button shows your playable cards for 2 seconds, once per turn.</li>
+          <li><b>Help:</b> your playable cards rise and glow, and the deck wiggles when nothing matches.</li>
+          <li>Your first 5 matches always have help so you learn the rules. After that it’s your choice, free until level 8.</li>
+          <li>After level 8: watch an ad to get help for one full match vs bots or in a private room (save up to 10).</li>
+          <li><b>Without help:</b> the “Lens” button shows your playable cards for 2 seconds, once per turn. In random matches only the Lens is available.</li>
         </ul>
-        <p>Change it in Settings.</p>
       </section>
 </template>
 
